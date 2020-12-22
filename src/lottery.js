@@ -1,8 +1,7 @@
 import web3 from './web3';
 
+const address = ADDRESS;
 
-const address = process.env.ADDRESS;
-
-const abi = process.env.ABI;
+const abi = ABI;
 
 export default new web3.eth.Contract(abi, address);
