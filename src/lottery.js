@@ -1,7 +1,7 @@
 import web3 from './web3';
 
-const address = ADDRESS;
+const address = '';
 
-const abi = ABI;
+const abi = "";
 
 export default new web3.eth.Contract(abi, address);

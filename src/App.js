@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import web3 from './web3';
 import lottery from  './lottery';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container, Row, Col, Form, Button, Navbar, Jumbotron} from 'react-bootstrap';
 
 
 class App extends Component {
@@ -48,26 +50,43 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-        <h2>Lottery App</h2>
-        <p>This contract is managed by {this.state.manager}</p>
-        <p>There are currently {this.state.players} entered, competing to win {web3.utils.fromWei(this.state.balance, 'ether')} ether.</p>
-        <hr/>
-        <h3>Test Your Luck!</h3>
-        <div>
-        <form onSubmit={this.onSubmit}>
-          <label>Enter the amount of ether</label><br/>
-          <input 
-            value={this.state.value}
-            onChange={event => this.setState({value: event.target.value})}
-          />
-          <button>Enter</button>
-        </form>
-        </div>
+          <Navbar bg="primary" variant="dark">
+            <Navbar.Brand href="#home">
+              Lottery App
+            </Navbar.Brand>
+          </Navbar>
+        <Container>
+          <Row>
+            <Col>
+            <Jumbotron className="m-2" fluid>
+              <p>This contract is managed by {this.state.manager}</p>
+              <p>There are currently {this.state.players} entered, competing to win {web3.utils.fromWei(this.state.balance, 'ether')} ether.</p>
+            </Jumbotron>
+            <div>
+            <h3>Test Your Luck!</h3>
+            <Form onSubmit={this.onSubmit}>
+            <Row>
+              <Col>
+              <Form.Group>
+                <Form.Label>Enter the amount of ether</Form.Label>
+                <Form.Control placeholder="Enter email" value={this.state.value}
+                  onChange={event => this.setState({value: event.target.value})} />
+              </Form.Group>
+              </Col>
+            </Row>
+            <Button onClick={this.onClick} variant="primary">
+              Submit
+            </Button>
+            </Form>
+            </div>
 
-        <h4>Ready to pick a winner?</h4>
-        <button onClick={this.onClick}>Pick a winner!</button>
-        <hr/>
-        <h2>{this.state.message}</h2>
+            <h4>Ready to pick a winner?</h4>
+            <button onClick={this.onClick}>Pick a winner!</button>
+            <hr/>
+            <h2>{this.state.message}</h2>
+            </Col>
+          </Row>
+        </Container>
       </div>
     )
   }
